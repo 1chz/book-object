@@ -26,6 +26,12 @@ class BagTests {
         }).doesNotThrowAnyException();
     }
 
+    @Test
+    void hasTicket() throws Exception {
+        Bag bag = Bag.from(10_000L);
+        assertThat(bag.hasTicket()).isFalse();
+    }
+
     @MethodSource
     @ParameterizedTest
     void hasInvitation(Bag bag, boolean expected) {
@@ -37,11 +43,5 @@ class BagTests {
                 Arguments.of(Bag.of(Invitation.from(now()), 10_000L), true),
                 Arguments.of(Bag.from(10_000L), false)
         );
-    }
-
-    @Test
-    void hasTicket() throws Exception {
-        Bag bag = Bag.from(10_000L);
-        assertThat(bag.hasTicket()).isFalse();
     }
 }

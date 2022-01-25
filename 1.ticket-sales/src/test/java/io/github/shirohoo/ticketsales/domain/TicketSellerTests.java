@@ -9,8 +9,9 @@ class TicketSellerTests {
     @Test
     void from() {
         TicketOffice ticketOffice = TicketOffice.of(10_000L, Ticket.from(10_000L));
-        assertThatCode(() -> TicketSeller.from(ticketOffice))
-            .doesNotThrowAnyException();
+        assertThatCode(() -> {
+            TicketSeller.from(ticketOffice);
+        }).doesNotThrowAnyException();
     }
 
     @Test

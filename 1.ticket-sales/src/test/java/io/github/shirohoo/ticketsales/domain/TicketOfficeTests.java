@@ -24,9 +24,7 @@ class TicketOfficeTests {
     @Test
     void ifHasNotTickets() {
         TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
-        for (int i = 0; i < 10; i++) {
-            ticketOffice.getTicket();
-        }
+        IntStream.range(0, 10).forEach(ticketing -> ticketOffice.getTicket());
         assertThatThrownBy(ticketOffice::getTicket)
                 .isInstanceOf(IllegalStateException.class);
     }
@@ -34,14 +32,15 @@ class TicketOfficeTests {
     @Test
     void plusAmount() {
         TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
-        assertThatCode(() -> ticketOffice.plusAmount(10_000L))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> {
+            ticketOffice.plusAmount(10_000L);
+        }).doesNotThrowAnyException();
         assertThat(ticketOffice.currentAmount()).isEqualTo(110_000L);
     }
 
     private Ticket[] newTickets(long ticketPrice) {
         return IntStream.rangeClosed(0, 9)
-                .mapToObj(i -> Ticket.from(ticketPrice))
+                .mapToObj(ticketing -> Ticket.from(ticketPrice))
                 .toArray(Ticket[]::new);
     }
 }
