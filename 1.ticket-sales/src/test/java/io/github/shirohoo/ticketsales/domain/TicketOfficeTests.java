@@ -1,0 +1,47 @@
+package io.github.shirohoo.ticketsales.domain;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.stream.IntStream;
+
+import static org.assertj.core.api.Assertions.*;
+
+class TicketOfficeTests {
+    @Test
+    void of() {
+        assertThatCode(() -> {
+            TicketOffice.of(100_000L, newTickets(10_000L));
+        }).doesNotThrowAnyException();
+    }
+
+    @Test
+    void getTicket() {
+        TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
+        Ticket ticket = ticketOffice.getTicket();
+        assertThat(ticket.getFee()).isEqualTo(10_000L);
+    }
+
+    @Test
+    void ifHasNotTickets() {
+        TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
+        for (int i = 0; i < 10; i++) {
+            ticketOffice.getTicket();
+        }
+        assertThatThrownBy(ticketOffice::getTicket)
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void plusAmount() {
+        TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
+        assertThatCode(() -> ticketOffice.plusAmount(10_000L))
+                .doesNotThrowAnyException();
+        assertThat(ticketOffice.currentAmount()).isEqualTo(110_000L);
+    }
+
+    private Ticket[] newTickets(long ticketPrice) {
+        return IntStream.rangeClosed(0, 9)
+                .mapToObj(i -> Ticket.from(ticketPrice))
+                .toArray(Ticket[]::new);
+    }
+}
