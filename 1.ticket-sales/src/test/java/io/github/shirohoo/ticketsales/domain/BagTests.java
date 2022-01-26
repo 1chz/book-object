@@ -13,14 +13,14 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class BagTests {
     @Test
-    void from() {
+    void from() throws Exception {
         assertThatCode(() -> {
             Bag.from(10_000L);
         }).doesNotThrowAnyException();
     }
 
     @Test
-    void of() {
+    void of() throws Exception {
         assertThatCode(() -> {
             Bag.of(Invitation.from(now()), 10_000L);
         }).doesNotThrowAnyException();
@@ -34,11 +34,11 @@ class BagTests {
 
     @MethodSource
     @ParameterizedTest
-    void hasInvitation(Bag bag, boolean expected) {
+    void hasInvitation(Bag bag, boolean expected) throws Exception {
         assertThat(bag.hasInvitation()).isEqualTo(expected);
     }
 
-    static Stream<Arguments> hasInvitation() {
+    static Stream<Arguments> hasInvitation() throws Exception {
         return Stream.of(
                 Arguments.of(Bag.of(Invitation.from(now()), 10_000L), true),
                 Arguments.of(Bag.from(10_000L), false)

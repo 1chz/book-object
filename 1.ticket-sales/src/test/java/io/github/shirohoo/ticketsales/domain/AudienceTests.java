@@ -8,38 +8,38 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class AudienceTests {
     @Test
-    void of() {
+    void of() throws Exception {
         Bag bag = Bag.from(10_000L);
         assertThatCode(() -> {
-            Audience.of(bag);
+            Audience.of(null, bag);
         }).doesNotThrowAnyException();
     }
 
     @Test
-    void currentAmount() {
+    void currentAmount() throws Exception {
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.currentAmount()).isEqualTo(10_000L);
     }
 
     @Test
-    void hasInvitationTrue() {
+    void hasInvitationTrue() throws Exception {
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.hasInvitation()).isFalse();
     }
 
     @Test
-    void hasInvitationFalse() {
+    void hasInvitationFalse() throws Exception {
         Bag bag = Bag.of(Invitation.from(now()), 10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.hasInvitation()).isTrue();
     }
 
     @Test
-    void hasTicket() {
+    void hasTicket() throws Exception {
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.hasTicket()).isFalse();
     }
 
@@ -47,7 +47,7 @@ class AudienceTests {
     void buy() throws Exception {
         // ...given
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         Ticket ticket = Ticket.from(10_000L);
 
         // ...when
@@ -57,5 +57,12 @@ class AudienceTests {
         assertThat(salesProceeds).isEqualTo(ticket.getFee());
         assertThat(audience.hasTicket()).isTrue();
         assertThat(audience.currentAmount()).isEqualTo(0L);
+    }
+
+    @Test
+    void getId() throws Exception {
+        Bag bag = Bag.from(10_000L);
+        Audience audience = Audience.of(1L, bag);
+        assertThat(audience.getId()).isEqualTo(1L);
     }
 }

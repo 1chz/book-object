@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class InvitationTests {
     @Test
-    void createInvitation() {
+    void createInvitation() throws Exception {
         assertThatCode(() -> {
             Invitation.from(now());
         }).doesNotThrowAnyException();

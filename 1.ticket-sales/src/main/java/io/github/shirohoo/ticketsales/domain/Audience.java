@@ -1,14 +1,16 @@
 package io.github.shirohoo.ticketsales.domain;
 
 public class Audience {
+    private final Long id;
     private final Bag bag;
 
-    public Audience(Bag bag) {
+    public Audience(Long id, Bag bag) {
+        this.id = id;
         this.bag = bag;
     }
 
-    public static Audience of(Bag bag) {
-        return new Audience(bag);
+    public static Audience of(Long id, Bag bag) {
+        return new Audience(id, bag);
     }
 
     public long buy(Ticket ticket) {
@@ -25,5 +27,9 @@ public class Audience {
 
     public long currentAmount() {
         return bag.currentAmount();
+    }
+
+    public Long getId() {
+        return id;
     }
 }
