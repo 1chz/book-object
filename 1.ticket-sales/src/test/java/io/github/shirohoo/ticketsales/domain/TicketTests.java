@@ -2,6 +2,7 @@ package io.github.shirohoo.ticketsales.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static io.github.shirohoo.ticketsales.fixture.DomainFixture.TICKET_10000;
 import static org.assertj.core.api.Assertions.*;
 
 class TicketTests {
@@ -21,7 +22,7 @@ class TicketTests {
 
     @Test
     void getFee() throws Exception {
-        Ticket ticket = Ticket.from(10_000L);
+        Ticket ticket = TICKET_10000;
         assertThat(ticket.getFee()).isEqualTo(10_000L);
     }
 }
