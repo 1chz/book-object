@@ -1,11 +1,10 @@
 package io.github.shirohoo.ticketsales.domain;
 
+import org.junit.jupiter.api.Test;
+
 import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 class TheaterTests {
     @Test
@@ -21,7 +20,7 @@ class TheaterTests {
     void enterHasInvitation() {
         // ...given
         Bag bag = Bag.of(Invitation.from(now()), 10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         TicketOffice ticketOffice = TicketOffice.of(0L, Ticket.from(10_000L));
         TicketSeller ticketSeller = TicketSeller.from(ticketOffice);
         Theater theater = Theater.from(ticketSeller);
@@ -39,7 +38,7 @@ class TheaterTests {
     void enterHasNotInvitation() {
         // ...given
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         TicketOffice ticketOffice = TicketOffice.of(0L, Ticket.from(10_000L));
         TicketSeller ticketSeller = TicketSeller.from(ticketOffice);
         Theater theater = Theater.from(ticketSeller);

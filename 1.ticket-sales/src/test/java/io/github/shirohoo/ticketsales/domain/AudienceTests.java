@@ -11,35 +11,35 @@ class AudienceTests {
     void of() {
         Bag bag = Bag.from(10_000L);
         assertThatCode(() -> {
-            Audience.of(bag);
+            Audience.of(null, bag);
         }).doesNotThrowAnyException();
     }
 
     @Test
     void currentAmount() {
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.currentAmount()).isEqualTo(10_000L);
     }
 
     @Test
     void hasInvitationTrue() {
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.hasInvitation()).isFalse();
     }
 
     @Test
     void hasInvitationFalse() {
         Bag bag = Bag.of(Invitation.from(now()), 10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.hasInvitation()).isTrue();
     }
 
     @Test
     void hasTicket() {
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         assertThat(audience.hasTicket()).isFalse();
     }
 
@@ -47,7 +47,7 @@ class AudienceTests {
     void buy() throws Exception {
         // ...given
         Bag bag = Bag.from(10_000L);
-        Audience audience = Audience.of(bag);
+        Audience audience = Audience.of(null, bag);
         Ticket ticket = Ticket.from(10_000L);
 
         // ...when
