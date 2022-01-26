@@ -28,4 +28,8 @@ public class Audience {
     public long currentAmount() {
         return bag.currentAmount();
     }
+
+    public Long getId() {
+        return id;
+    }
 }

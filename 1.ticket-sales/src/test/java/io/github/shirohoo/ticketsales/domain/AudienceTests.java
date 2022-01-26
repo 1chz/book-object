@@ -58,4 +58,11 @@ class AudienceTests {
         assertThat(audience.hasTicket()).isTrue();
         assertThat(audience.currentAmount()).isEqualTo(0L);
     }
+
+    @Test
+    void getId() throws Exception {
+        Bag bag = Bag.from(10_000L);
+        Audience audience = Audience.of(1L, bag);
+        assertThat(audience.getId()).isEqualTo(1L);
+    }
 }
