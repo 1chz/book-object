@@ -7,4 +7,4 @@
 [![GitHub issues](https://img.shields.io/github/issues/shirohoo/book-object)](https://github.com/shirohoo/book-object/issues)
 [![GitHub forks](https://img.shields.io/github/forks/shirohoo/book-object)](https://github.com/shirohoo/book-object/network)
 
-- [📜 1. 티켓 예매 프로그램](1.ticket-sales/README.md)
+- [📜 1. 티켓 예매 프로그램](https://github.com/shirohoo/book-object/tree/main/1.ticket-sales)

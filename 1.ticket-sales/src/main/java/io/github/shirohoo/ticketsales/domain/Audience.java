@@ -1,6 +1,6 @@
 package io.github.shirohoo.ticketsales.domain;
 
-public final class Audience {
+public class Audience {
     private final Bag bag;
 
     public Audience(Bag bag) {
