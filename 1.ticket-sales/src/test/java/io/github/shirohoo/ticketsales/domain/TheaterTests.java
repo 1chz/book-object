@@ -2,6 +2,7 @@ package io.github.shirohoo.ticketsales.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static io.github.shirohoo.ticketsales.fixture.DomainFixture.ticketOfficeComedy;
 import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 class TheaterTests {
     @Test
     void from() throws Exception {
-        TicketOffice ticketOffice = TicketOffice.of(0, Ticket.from(10_000L));
+        TicketOffice ticketOffice = ticketOfficeComedy();
         TicketSeller ticketSeller = TicketSeller.from(ticketOffice);
         assertThatCode(() -> {
             Theater.from(ticketSeller);
@@ -21,7 +22,7 @@ class TheaterTests {
         // ...given
         Bag bag = Bag.of(Invitation.from(now()), 10_000L);
         Audience audience = Audience.of(null, bag);
-        TicketOffice ticketOffice = TicketOffice.of(0L, Ticket.from(10_000L));
+        TicketOffice ticketOffice = ticketOfficeComedy();
         TicketSeller ticketSeller = TicketSeller.from(ticketOffice);
         Theater theater = Theater.from(ticketSeller);
 
@@ -39,7 +40,7 @@ class TheaterTests {
         // ...given
         Bag bag = Bag.from(10_000L);
         Audience audience = Audience.of(null, bag);
-        TicketOffice ticketOffice = TicketOffice.of(0L, Ticket.from(10_000L));
+        TicketOffice ticketOffice = ticketOfficeComedy();
         TicketSeller ticketSeller = TicketSeller.from(ticketOffice);
         Theater theater = Theater.from(ticketSeller);
 

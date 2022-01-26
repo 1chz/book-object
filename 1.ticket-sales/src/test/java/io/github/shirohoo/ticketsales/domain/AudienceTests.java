@@ -2,6 +2,7 @@ package io.github.shirohoo.ticketsales.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static io.github.shirohoo.ticketsales.fixture.DomainFixture.TICKET_10000;
 import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -48,7 +49,7 @@ class AudienceTests {
         // ...given
         Bag bag = Bag.from(10_000L);
         Audience audience = Audience.of(null, bag);
-        Ticket ticket = Ticket.from(10_000L);
+        Ticket ticket = TICKET_10000;
 
         // ...when
         long salesProceeds = audience.buy(ticket);

@@ -1,20 +1,40 @@
 package io.github.shirohoo.ticketsales.adapter.out.persistence;
 
-import io.github.shirohoo.ticketsales.domain.Audience;
-import io.github.shirohoo.ticketsales.port.out.SaveAudience;
+import io.github.shirohoo.ticketsales.port.out.PerformanceAttributes;
+import io.github.shirohoo.ticketsales.port.out.SavePerformanceInformation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.stream.Collectors;
+
+@Slf4j
 @Repository
 @RequiredArgsConstructor
-public class AudienceAdapter implements SaveAudience {
-    private final AudienceMapper audienceMapper;
-    private final AudienceJpaRepository jpaRepository;
+public class AudienceAdapter implements SavePerformanceInformation {
+    private final AudienceJpaRepository audienceJpaRepository;
+    private final PerformanceJpaRepository performanceJpaRepository;
 
     @Override
-    public Audience save(Audience audience) {
-        AudienceEntity entity = audienceMapper.toEntity(audience);
-        AudienceEntity savedEntity = jpaRepository.save(entity);
-        return audienceMapper.toDomain(savedEntity);
+    @Transactional
+    public boolean save(PerformanceAttributes attributes) {
+        try {
+            if (attributes == null) {
+                throw new IllegalArgumentException();
+            }
+
+            PerformanceEntity performance = PerformanceEntity.from(attributes);
+            performanceJpaRepository.save(performance);
+            audienceJpaRepository.saveAll(attributes.getAudiences()
+                    .stream()
+                    .map(audience -> AudienceEntity.of(audience, performance))
+                    .collect(Collectors.toSet()));
+
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
     }
 }

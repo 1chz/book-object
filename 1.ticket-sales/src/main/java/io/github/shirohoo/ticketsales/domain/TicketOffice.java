@@ -6,16 +6,18 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class TicketOffice {
+    private final Genre genre;
     private final AtomicLong amount;
     private final Queue<Ticket> tickets = new LinkedBlockingQueue<>();
 
-    private TicketOffice(long amount, Ticket... tickets) {
+    private TicketOffice(Genre genre, long amount, Ticket... tickets) {
+        this.genre = genre;
         this.amount = new AtomicLong(amount);
         this.tickets.addAll(Arrays.asList(tickets));
     }
 
-    public static TicketOffice of(long amount, Ticket... tickets) {
-        return new TicketOffice(amount, tickets);
+    public static TicketOffice of(Genre genre, long amount, Ticket... tickets) {
+        return new TicketOffice(genre, amount, tickets);
     }
 
     public Ticket getTicket() {
@@ -30,7 +32,11 @@ public class TicketOffice {
         this.amount.set(balance + amount);
     }
 
-    public long currentAmount(){
+    public long currentAmount() {
         return amount.get();
+    }
+
+    public Genre getGenre() {
+        return genre;
     }
 }

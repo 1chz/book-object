@@ -4,26 +4,28 @@ import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
 
+import static io.github.shirohoo.ticketsales.fixture.DomainFixture.TICKET_10000;
+import static io.github.shirohoo.ticketsales.fixture.DomainFixture.ticketOfficeComedy;
 import static org.assertj.core.api.Assertions.*;
 
 class TicketOfficeTests {
     @Test
     void of() throws Exception {
         assertThatCode(() -> {
-            TicketOffice.of(100_000L, newTickets(10_000L));
+            TicketOffice.of(Genre.COMEDY, 0L, TICKET_10000);
         }).doesNotThrowAnyException();
     }
 
     @Test
     void getTicket() throws Exception {
-        TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
+        TicketOffice ticketOffice = ticketOfficeComedy();
         Ticket ticket = ticketOffice.getTicket();
         assertThat(ticket.getFee()).isEqualTo(10_000L);
     }
 
     @Test
     void ifHasNotTickets() throws Exception {
-        TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
+        TicketOffice ticketOffice = ticketOfficeComedy();
         IntStream.range(0, 10).forEach(ticketing -> ticketOffice.getTicket());
         assertThatThrownBy(ticketOffice::getTicket)
                 .isInstanceOf(IllegalStateException.class);
@@ -31,16 +33,16 @@ class TicketOfficeTests {
 
     @Test
     void plusAmount() throws Exception {
-        TicketOffice ticketOffice = TicketOffice.of(100_000L, newTickets(10_000L));
+        TicketOffice ticketOffice = ticketOfficeComedy();
         assertThatCode(() -> {
             ticketOffice.plusAmount(10_000L);
         }).doesNotThrowAnyException();
-        assertThat(ticketOffice.currentAmount()).isEqualTo(110_000L);
+        assertThat(ticketOffice.currentAmount()).isEqualTo(10_000L);
     }
 
-    private Ticket[] newTickets(long ticketPrice) throws Exception {
-        return IntStream.rangeClosed(0, 9)
-                .mapToObj(ticketing -> Ticket.from(ticketPrice))
-                .toArray(Ticket[]::new);
+    @Test
+    void getGenre() throws Exception {
+        TicketOffice ticketOffice = ticketOfficeComedy();
+        assertThat(ticketOffice.getGenre()).isEqualTo(Genre.COMEDY);
     }
 }
