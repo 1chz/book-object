@@ -1,11 +1,10 @@
 package io.github.shirohoo.ticketsales.adapter.out.persistence;
 
-import io.github.shirohoo.ticketsales.domain.Audience;
-import io.github.shirohoo.ticketsales.domain.Bag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static io.github.shirohoo.ticketsales.fixture.DomainFixture.performanceAttributes;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -14,17 +13,14 @@ class AudienceAdapterTests {
     AudienceAdapter audienceAdapter;
 
     @Test
-    void save() {
-        // ...given
-        Audience audience = Audience.of(null, Bag.from(10_000L));
+    void save() throws Exception {
+        boolean result = audienceAdapter.save(performanceAttributes());
+        assertThat(result).isTrue();
+    }
 
-        // ...when
-        Audience savedAudience = audienceAdapter.save(audience);
-
-        // ...then
-        assertThat(savedAudience.getId()).isEqualTo(1L);
-        assertThat(savedAudience.currentAmount()).isEqualTo(audience.currentAmount());
-        assertThat(savedAudience.hasTicket()).isEqualTo(audience.hasTicket());
-        assertThat(savedAudience.hasInvitation()).isFalse();
+    @Test
+    void saveException() throws Exception {
+        boolean result = audienceAdapter.save(null);
+        assertThat(result).isFalse();
     }
 }

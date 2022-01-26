@@ -17,17 +17,15 @@ public class AudienceEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private long amount;
+    @ManyToOne
+    private PerformanceEntity performance;
 
-    private boolean hasTicket;
-
-    private AudienceEntity(Long id, long amount, boolean hasTicket) {
+    private AudienceEntity(Long id, PerformanceEntity performance) {
         this.id = id;
-        this.amount = amount;
-        this.hasTicket = hasTicket;
+        this.performance = performance;
     }
 
-    public static AudienceEntity from(Audience audience) {
-        return new AudienceEntity(audience.getId(), audience.currentAmount(), audience.hasTicket());
+    public static AudienceEntity of(Audience audience, PerformanceEntity performance) {
+        return new AudienceEntity(audience.getId(), performance);
     }
 }
