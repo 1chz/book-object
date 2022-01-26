@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class TheaterTests {
     @Test
-    void from() {
+    void from() throws Exception {
         TicketOffice ticketOffice = TicketOffice.of(0, Ticket.from(10_000L));
         TicketSeller ticketSeller = TicketSeller.from(ticketOffice);
         assertThatCode(() -> {
@@ -17,7 +17,7 @@ class TheaterTests {
     }
 
     @Test
-    void enterHasInvitation() {
+    void enterHasInvitation() throws Exception {
         // ...given
         Bag bag = Bag.of(Invitation.from(now()), 10_000L);
         Audience audience = Audience.of(null, bag);
@@ -35,7 +35,7 @@ class TheaterTests {
     }
 
     @Test
-    void enterHasNotInvitation() {
+    void enterHasNotInvitation() throws Exception {
         // ...given
         Bag bag = Bag.from(10_000L);
         Audience audience = Audience.of(null, bag);

@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class AudienceTests {
     @Test
-    void of() {
+    void of() throws Exception {
         Bag bag = Bag.from(10_000L);
         assertThatCode(() -> {
             Audience.of(null, bag);
@@ -16,28 +16,28 @@ class AudienceTests {
     }
 
     @Test
-    void currentAmount() {
+    void currentAmount() throws Exception {
         Bag bag = Bag.from(10_000L);
         Audience audience = Audience.of(null, bag);
         assertThat(audience.currentAmount()).isEqualTo(10_000L);
     }
 
     @Test
-    void hasInvitationTrue() {
+    void hasInvitationTrue() throws Exception {
         Bag bag = Bag.from(10_000L);
         Audience audience = Audience.of(null, bag);
         assertThat(audience.hasInvitation()).isFalse();
     }
 
     @Test
-    void hasInvitationFalse() {
+    void hasInvitationFalse() throws Exception {
         Bag bag = Bag.of(Invitation.from(now()), 10_000L);
         Audience audience = Audience.of(null, bag);
         assertThat(audience.hasInvitation()).isTrue();
     }
 
     @Test
-    void hasTicket() {
+    void hasTicket() throws Exception {
         Bag bag = Bag.from(10_000L);
         Audience audience = Audience.of(null, bag);
         assertThat(audience.hasTicket()).isFalse();
