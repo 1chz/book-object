@@ -1,6 +1,5 @@
 package io.github.shirohoo.moviereservation.domain;
 
-import static io.github.shirohoo.moviereservation.fixture.DomainFixture.testMovie;
 import static io.github.shirohoo.moviereservation.fixture.DomainFixture.testScreening;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -57,7 +56,7 @@ class MovieTests {
         Movie movie = Movie.of(title, runningTime, fee, discountPolicy);
 
         // ...then
-        assertThat(movie.calculateMovieFee(testScreening(testMovie()))).isEqualTo(fee);
+        assertThat(movie.calculateMovieFee(testScreening())).isEqualTo(fee);
     }
 
     @Test
@@ -72,6 +71,6 @@ class MovieTests {
         movie.setDiscountPolicy(new PercentDiscountPolicy(10));
 
         // ...then
-        assertThat(movie.calculateMovieFee(testScreening(testMovie()))).isEqualTo(fee);
+        assertThat(movie.calculateMovieFee(testScreening())).isEqualTo(fee);
     }
 }
