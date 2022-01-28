@@ -6,16 +6,16 @@ public class Movie {
     private final String title;
     private final Duration runningTime;
     private final Money fee;
-    private DefaultDiscountPolicy discountPolicy;
+    private DiscountPolicy discountPolicy;
 
-    private Movie(String title, Duration runningTime, Money fee, DefaultDiscountPolicy discountPolicy) {
+    private Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
         this.title = title;
         this.runningTime = runningTime;
         this.fee = fee;
         this.discountPolicy = discountPolicy;
     }
 
-    public static Movie of(String title, Duration runningTime, Money fee, DefaultDiscountPolicy discountPolicy) {
+    public static Movie of(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
         return new Movie(title, runningTime, fee, discountPolicy);
     }
 

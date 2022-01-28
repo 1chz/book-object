@@ -4,6 +4,10 @@ public class SequenceDiscountCondition implements DiscountCondition {
     private final int sequence;
 
     private SequenceDiscountCondition(int sequence) {
+        if (sequence <= 0) {
+            throw new IllegalArgumentException();
+        }
+
         this.sequence = sequence;
     }
 
