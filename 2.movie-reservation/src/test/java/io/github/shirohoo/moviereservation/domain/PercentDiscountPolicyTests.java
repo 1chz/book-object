@@ -15,8 +15,14 @@ class PercentDiscountPolicyTests {
 
     @Test
     void getDiscountAmount() throws Exception {
+        // ...given
+        DiscountCondition condition = SequenceDiscountCondition.from(1);
         PercentDiscountPolicy percentDiscountPolicy = PercentDiscountPolicy.of(10.0);
+
+        // ...when
         Money discountAmount = percentDiscountPolicy.getDiscountAmount(testScreening());
+
+        // ...then
         assertThat(discountAmount).isEqualTo(Money.won(990.0));
     }
 }
