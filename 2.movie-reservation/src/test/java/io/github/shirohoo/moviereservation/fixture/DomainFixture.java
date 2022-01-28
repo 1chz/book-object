@@ -9,6 +9,10 @@ import io.github.shirohoo.moviereservation.domain.Screening;
 import java.time.Duration;
 
 public class DomainFixture {
+    public static Screening testScreening() {
+        return Screening.of(testMovie(), 1, now());
+    }
+
     public static Screening testScreening(Movie movie) {
         return Screening.of(movie, 1, now());
     }
