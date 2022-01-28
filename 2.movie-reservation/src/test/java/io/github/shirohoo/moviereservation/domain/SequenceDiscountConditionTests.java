@@ -1,5 +1,6 @@
 package io.github.shirohoo.moviereservation.domain;
 
+import static io.github.shirohoo.moviereservation.fixture.DomainFixture.testMovie;
 import static io.github.shirohoo.moviereservation.fixture.DomainFixture.testScreening;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -23,7 +24,7 @@ class SequenceDiscountConditionTests {
 
     @Test
     void isSatisfiedBy() throws Exception {
-        Screening screening = testScreening(new NoneDefaultDiscountPolicy());
+        Screening screening = testScreening(testMovie());
         SequenceDiscountCondition discountCondition = SequenceDiscountCondition.from(1);
         assertThat(discountCondition.isSatisfiedBy(screening)).isTrue();
     }
