@@ -4,7 +4,7 @@ import static java.time.LocalDateTime.now;
 import io.github.shirohoo.moviereservation.domain.DiscountPolicy;
 import io.github.shirohoo.moviereservation.domain.Money;
 import io.github.shirohoo.moviereservation.domain.Movie;
-import io.github.shirohoo.moviereservation.domain.NoneDefaultDiscountPolicy;
+import io.github.shirohoo.moviereservation.domain.NoneDiscountPolicy;
 import io.github.shirohoo.moviereservation.domain.Screening;
 import java.time.Duration;
 
@@ -18,18 +18,18 @@ public class DomainFixture {
     }
 
     public static Movie testMovie() {
-        return testMovie("titanic", Duration.ofMinutes(150), Money.won(9_900), new NoneDefaultDiscountPolicy());
+        return testMovie("titanic", Duration.ofMinutes(150), Money.won(9_900), new NoneDiscountPolicy());
     }
 
     public static Movie testMovie(Duration runningTime) {
-        return testMovie("titanic", runningTime, Money.won(9_900), new NoneDefaultDiscountPolicy());
+        return testMovie("titanic", runningTime, Money.won(9_900), new NoneDiscountPolicy());
     }
 
     public static Movie testMovie(Money fee) {
-        return testMovie("titanic", Duration.ofMinutes(150), fee, new NoneDefaultDiscountPolicy());
+        return testMovie("titanic", Duration.ofMinutes(150), fee, new NoneDiscountPolicy());
     }
 
-    public static Movie testMovie(NoneDefaultDiscountPolicy discountPolicy) {
+    public static Movie testMovie(NoneDiscountPolicy discountPolicy) {
         return testMovie("titanic", Duration.ofMinutes(150), Money.won(9_900), discountPolicy);
     }
 

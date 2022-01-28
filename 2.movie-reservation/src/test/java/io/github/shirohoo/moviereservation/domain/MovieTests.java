@@ -14,7 +14,7 @@ class MovieTests {
             String title = "titanic";
             Duration runningTime = Duration.ofMinutes(150);
             Money fee = Money.won(9_900);
-            DiscountPolicy discountPolicy = new NoneDefaultDiscountPolicy();
+            DiscountPolicy discountPolicy = new NoneDiscountPolicy();
             Movie.of(title, runningTime, fee, discountPolicy);
         }).doesNotThrowAnyException();
     }
@@ -25,7 +25,7 @@ class MovieTests {
             String title = "titanic";
             Duration runningTime = Duration.ofMinutes(150);
             Money fee = Money.won(-1);
-            DiscountPolicy discountPolicy = new NoneDefaultDiscountPolicy();
+            DiscountPolicy discountPolicy = new NoneDiscountPolicy();
             Movie.of(title, runningTime, fee, discountPolicy);
         }).isInstanceOf(IllegalStateException.class);
     }
@@ -36,7 +36,7 @@ class MovieTests {
         String title = "titanic";
         Duration runningTime = Duration.ofMinutes(150);
         Money fee = Money.won(9_900);
-        DiscountPolicy discountPolicy = new NoneDefaultDiscountPolicy();
+        DiscountPolicy discountPolicy = new NoneDiscountPolicy();
 
         // ...when
         Movie movie = Movie.of(title, runningTime, fee, discountPolicy);
@@ -50,7 +50,7 @@ class MovieTests {
         String title = "titanic";
         Duration runningTime = Duration.ofMinutes(150);
         Money fee = Money.won(9_900);
-        DiscountPolicy discountPolicy = new NoneDefaultDiscountPolicy();
+        DiscountPolicy discountPolicy = new NoneDiscountPolicy();
 
         // ...when
         Movie movie = Movie.of(title, runningTime, fee, discountPolicy);
@@ -64,7 +64,7 @@ class MovieTests {
         String title = "titanic";
         Duration runningTime = Duration.ofMinutes(150);
         Money fee = Money.won(9_900);
-        DiscountPolicy discountPolicy = new NoneDefaultDiscountPolicy();
+        DiscountPolicy discountPolicy = new NoneDiscountPolicy();
         Movie movie = Movie.of(title, runningTime, fee, discountPolicy);
 
         // ...when
