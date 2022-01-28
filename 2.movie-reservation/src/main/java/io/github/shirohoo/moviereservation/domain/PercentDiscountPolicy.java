@@ -1,9 +1,9 @@
 package io.github.shirohoo.moviereservation.domain;
 
-public class PercentDefaultDiscountPolicy extends DefaultDiscountPolicy {
+public class PercentDiscountPolicy extends DefaultDiscountPolicy {
     private final double percent;
 
-    public PercentDefaultDiscountPolicy(double percent, DiscountCondition... conditions) {
+    public PercentDiscountPolicy(double percent, DiscountCondition... conditions) {
         super(conditions);
         this.percent = percent;
     }
