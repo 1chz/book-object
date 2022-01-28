@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class AmountDiscountPolicyTests {
     @Test
-    void of() {
+    void of() throws Exception {
         assertThatCode(() -> {
             Money discountAmount = Money.won(1_000);
             DiscountCondition condition = SequenceDiscountCondition.from(1);
@@ -16,15 +16,15 @@ class AmountDiscountPolicyTests {
     }
 
     @Test
-    void getDiscountAmount() {
+    void getDiscountAmount() throws Exception {
         // ...given
-        Money discountAmount = Money.won(1_000);
         DiscountCondition condition = SequenceDiscountCondition.from(1);
+        AmountDiscountPolicy discountPolicy = AmountDiscountPolicy.of(Money.won(1_000), condition);
 
         // ...when
-        AmountDiscountPolicy discountPolicy = AmountDiscountPolicy.of(discountAmount, condition);
+        Money discountAmount = discountPolicy.getDiscountAmount(testScreening());
 
         // ...then
-        assertThat(discountPolicy.getDiscountAmount(testScreening())).isEqualTo(discountAmount);
+        assertThat(discountAmount).isEqualTo(Money.won(1_000));
     }
 }

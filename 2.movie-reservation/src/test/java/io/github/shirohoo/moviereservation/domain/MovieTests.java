@@ -68,7 +68,7 @@ class MovieTests {
         Movie movie = Movie.of(title, runningTime, fee, discountPolicy);
 
         // ...when
-        movie.setDiscountPolicy(new PercentDiscountPolicy(10));
+        movie.setDiscountPolicy(PercentDiscountPolicy.of(10));
 
         // ...then
         assertThat(movie.calculateMovieFee(testScreening())).isEqualTo(fee);
