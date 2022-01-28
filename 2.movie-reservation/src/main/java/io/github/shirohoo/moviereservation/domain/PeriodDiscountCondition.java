@@ -22,8 +22,9 @@ public class PeriodDiscountCondition implements DiscountCondition {
     @Override
     public boolean isSatisfiedBy(Screening screening) {
         LocalDateTime startTime = screening.getStartTime();
-        return startTime.getDayOfWeek().equals(dayOfWeek) &&
-            this.startTime.compareTo(startTime.toLocalTime()) <= 0 &&
-            this.endTime.compareTo(startTime.toLocalTime()) >= 0;
+        boolean equals = startTime.getDayOfWeek().equals(dayOfWeek);
+        boolean before = this.startTime.isBefore(startTime.toLocalTime());
+        boolean after = this.endTime.isAfter(startTime.toLocalTime());
+        return equals && before && after;
     }
 }

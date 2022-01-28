@@ -65,8 +65,8 @@ class DefaultDiscountPolicyTests {
         // ...given
         LocalDateTime now = LocalDateTime.now();
         DayOfWeek dayOfWeek = now.getDayOfWeek();
-        LocalTime startTime = now.toLocalTime();
-        LocalTime endTime = now.toLocalTime().plusMinutes(150);
+        LocalTime startTime = now.toLocalTime().minusHours(2);
+        LocalTime endTime = now.toLocalTime().plusHours(2);
         PeriodDiscountCondition condition = PeriodDiscountCondition.of(dayOfWeek, startTime, endTime);
         AmountDiscountPolicy discountPolicy = AmountDiscountPolicy.of(Money.won(1_000), condition);
 
@@ -82,8 +82,8 @@ class DefaultDiscountPolicyTests {
         // ...given
         LocalDateTime now = LocalDateTime.now();
         DayOfWeek dayOfWeek = now.getDayOfWeek();
-        LocalTime startTime = now.toLocalTime();
-        LocalTime endTime = now.toLocalTime().plusMinutes(150);
+        LocalTime startTime = now.toLocalTime().minusHours(2);
+        LocalTime endTime = now.toLocalTime().plusHours(2);
         PeriodDiscountCondition condition = PeriodDiscountCondition.of(dayOfWeek, startTime, endTime);
         PercentDiscountPolicy discountPolicy = PercentDiscountPolicy.of(10.0, condition);
 
