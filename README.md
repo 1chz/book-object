@@ -8,3 +8,4 @@
 [![GitHub forks](https://img.shields.io/github/forks/shirohoo/book-object)](https://github.com/shirohoo/book-object/network)
 
 - [📜 1. 티켓 예매 프로그램](https://github.com/shirohoo/book-object/tree/main/1.ticket-sales)
+- [📜 2. 영화 예매 프로그램](https://github.com/shirohoo/book-object/tree/main/2.movie-reservation)
