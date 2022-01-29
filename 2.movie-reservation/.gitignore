@@ -36,4 +36,3 @@ out/
 
 ### VS Code ###
 .vscode/
-/2.movie-reservation/src/main/resources/static/jacoco/
